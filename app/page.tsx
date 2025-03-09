@@ -13,7 +13,7 @@ export default function Home() {
       <div className={styles.hillsBgContainer}></div>
       <section className={styles.contentWrapper}>
         <header className={styles.header}>
-          <h1>We're launching soon</h1>
+          <h1>We&apos;re launching soon</h1>
         </header>
         <article className={styles.counterWrapper}>
           <Counter value={days} text="days" />
