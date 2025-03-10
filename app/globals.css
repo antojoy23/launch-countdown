@@ -4,6 +4,7 @@
 
   --color-white: hsl(0, 0%, 100%);
   --color-blue-500: hsl(235 20% 25%);
+  --color-blue-600: hsl(240, 21%, 22%);
   --color-blue-800: hsl(240, 12%, 5%);
   --color-blue-900: hsl(234, 17%, 12%);
 }

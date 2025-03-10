@@ -11,7 +11,6 @@ const padNumber = (num: number) => {
 const getRemainingTime = () => {
     const currentTime = (new Date()).getTime();
     const remainingTime = launchTime - currentTime;
-    console.log(launchTime, currentTime, remainingTime);
     const seconds = padNumber(Math.floor((remainingTime / 1000) % 60));
     const minutes = padNumber(Math.floor((remainingTime / (1000 * 60)) % 60));
     const hours = padNumber(Math.floor((remainingTime / (1000 * 60 * 60)) % 24));

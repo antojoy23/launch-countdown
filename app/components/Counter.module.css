@@ -14,20 +14,68 @@
 }
 
 .counter {
-    display: flex;
+    display: inline-flex;
+    flex-direction: column;
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-blue-500);
+    background: linear-gradient(to bottom, var(--color-blue-600) 0 50%, var(--color-blue-500) 50% 100%);
     width: clamp(2rem, 20vw, 11rem);
     height: clamp(2rem, 20vw, 11rem);
     border-radius: clamp(0.1rem, 0.8vw, 0.4rem);
     box-shadow: 0 8px 0 0 var(--color-blue-900);
 }
 
-.counter span {
+.counter.flip::after, .counter.flip::before {
+    width: 100%;
+    position: absolute;
     font-size: clamp(1.4rem, 12vw, 6rem);
     font-weight: 700;
+    height: .5em;
+    line-height: 1;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    z-index: 3;
+}
+
+.counter.flip::before {
+    bottom: 50%;
+    content: attr(data-current-value);
+    align-items: flex-start;
+    animation: flip-top 250ms ease-in forwards;
+    transform-origin: bottom;
+    background-color: var(--color-blue-600);
+}
+
+.counter.flip::after {
+    top: 50%;
+    content: attr(data-next-value);
+    align-items: flex-end;
+    animation: flip-bottom 250ms ease-out forwards;
+    transform: rotateX(90deg);
+    animation-delay: 250ms;
+    transform-origin: top;
+    background-color: var(--color-blue-500);
+}
+
+
+.topNumber, .bottomNumber {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: clamp(1.4rem, 12vw, 6rem);
+    font-weight: 700;
+    height: .5em;
+    line-height: 1;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bottomNumber {
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .clipper {
@@ -37,6 +85,7 @@
     bottom: 0;
     right: 0;
     background-color: var(--background);
+    z-index: 10;
 }
 
 .clipperLeft {
@@ -47,13 +96,27 @@
     clip-path: circle(clamp(0.1rem, 0.8vw, 0.5rem) at 100% 50%);
 }
 
-.overlay {
+.topOverlay {
     position: absolute;
-    left: 0;
+    width: 100%;
+    height: 50%;
     top: 0;
-    bottom: 0;
-    right: 0;
-    background-color: var(--color-blue-800);
-    opacity: 0.2;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+    background-color: transparent;
+    border-bottom: 1px solid var(--background);
+    opacity: 0.1;
+    z-index: 2;
+}
+
+@keyframes flip-top {
+    100% {
+        transform: rotateX(90deg);
+    }
+}
+@keyframes flip-bottom {
+    0% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
 }
